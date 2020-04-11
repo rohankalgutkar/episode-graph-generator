@@ -437,10 +437,48 @@ there.
 
 /*  Custom CSS  */
 footer {
+  background-color: rgb(211,211,211,0.25);
   position: relative;
   width: 100%;
   margin: 0 auto;
   padding: 1% 15%;
   box-sizing: border-box; 
   flex-shrink: 0;
+  font-size: 85%;
+}
+
+.one-line img, .one-line h6 {
+  display: inline-block;
+}
+
+.for-note {
+  margin-left: 0 !important;
+}
+.note {
+  font-size: 90%; 
+  background: #F1F1F1;
+  padding: 2rem 4rem 2rem 2rem;
+  font-family: monospace, monospace;
+  border-radius: 4px;
+}
+
+.top-margin{
+  margin-top: 10%;
+}
+
+.section-hide {
+  display: none;
+}
+
+.home-main {
+  margin-top: 10%;
+}
+
+.error-note{
+  font-size: 90%;
+  padding-top: 0.75rem;
+}
+
+.hidden {
+  visibility: hidden;
 }

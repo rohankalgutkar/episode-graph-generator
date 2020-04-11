@@ -1,78 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Basic Page Needs –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
   <title>IMDb Episode Graph</title>
   <meta name="description" content="Create cool heatmaps based on episode ratings of your favourite TV shows!">
   <meta name="author" content="Rohan kalgutkar">
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Mobile Specific Metas –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- FONT –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/animate.css">
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <!-- Favicon –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
-<body>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<body>
   <div class="container">
-    <div class="row">
-      <div class="twelve columns" style="margin-top: 15%;">
+    <div class="row animated" id="home">
+      <div class="twelve columns home-main">
         <img src="images/television.png">
         <h3>Episode Graph Generator</h3>
-        <h6>Enter the title-code (from IMDb) of the show below.</h6>
-        <form method="post" action="/">
-            <div class="row">
-              <div class="six columns">
-                <input class="u-full-width" type="text" placeholder="Eg. tt0386676" name="imdbID">
-              </div>
-              <div class="six columns">
-                <input class="button-primary" type="submit" value="Generate!">
-              </div>
+        <h6>Enter the Show ID (from IMDb) of the show below.</h6>
+        <form>
+          <div class="row">
+            <div class="six columns">
+              <input class="u-full-width" type="text" placeholder="Eg. tt0386676" name="imdbID" id="imdbID">
             </div>
-            
-          </form>
+            <div class="two columns">
+              <input class="button-primary" type="submit" value="Generate!">
+            </div>
+            <div class="three columns error-note hidden" id="error-note">
+              <p>Please enter a valid show ID!</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="eight columns for-note">
+        <p class="note">
+          • Show ID is the 9 character code found in the URL of it's IMDb page. <br>
+          • Only TV shows are supported for now. <br>
+          • Mini-series & documentaries to be added soon!
+        </p>
+      </div>
+    </div>
+
+    <div class="row animated" id="graph" style="display: none;">
+      <div class="nine columns one-line" style="margin-top: 5%;">
+        <img src="images/favicon.png" style="float: left;">
+        <h5 style="padding-left: 3rem; float: left;">IMDb Episode Graph</h5>
+      </div>
+      <div class="three columns" style="margin-top: 5%; margin-bottom: 3%;">
+        <button id="takeHome">Plot Another Show</button>
+      </div>
+      <div class="twelve columns" style="text-align: center;">
+        <div id="chart" style="display: inline-block;"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ------------------------- Footer ------------------------- -->
+  <footer>
+    <div class="row">
+      <div class="five columns">
+        <p class="no-marg">Original Idea by Reddit user <a href="https://www.reddit.com/user/Hbenne"
+            target="_blank">u/Hbenne</a>
+          <br>
+          Data Source: IMDb // Last updated: 5th Apr'20
+          <br>
+          Icons made by <a target="_blank" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+          from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </p>
+      </div>
+      <div class="six columns">
+        <p class="no-marg">
+          This site is not affiliated with IMDb<br>
+          Charting library: <a href="https://apexcharts.com/">apexcharts.com</a> <br>
+          <!-- &copy;2020 @daft_ro<br> -->
+          <span style="color: #D2691E;"> Designed and developed by <a target="_blank" href="https://rohankalgutkar.in">Rohan Kalgutkar</a></span></p>
 
 
       </div>
     </div>
-  </div>
-
-  <footer style="background-color: rgb(211,211,211,0.25);">
-    <div class="row">
-        <div class="six columns">
-            <p class="no-marg">Original Idea by Reddit user <a href="https://www.reddit.com/user/Hbenne" target="_blank">u/Hbenne</a>
-                <br>
-                Data Source: IMDb
-                <br>
-                Icons made by <a target="_blank" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-            </p>
-        </div>
-        <div class="six columns">
-            <br>
-            <p class="no-marg">Designed and developed by <a target="_blank" href="https://rohankalgutkar.in">Rohan Kalgutkar</a>
-                <br>
-            &copy;2020 @daft_ro</p>
-        </div>
-    </div>
-</footer>
-<!-- End Document
+  </footer>
+  <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="js/fetchShowData.js"></script>
 </body>
 </html>
