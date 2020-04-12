@@ -1,7 +1,7 @@
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 
-const connectionURL = 'mongodb://127.0.0.1:27017';
+const connectionURL = process.env.MongoDB_URI || 'mongodb://127.0.0.1:27017';
 const dbName = 'imdb';
 
 const getRatings = async (showID) => {
