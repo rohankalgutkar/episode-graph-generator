@@ -1,7 +1,8 @@
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 
-const connectionURL = process.env.MongoDB_URI || 'mongodb://127.0.0.1:27017';
+
+const connectionURL = process.env.MongoDB_URI || 'mongodb://127.0.0.1:27017/imdb';
 console.log('connection URL '+connectionURL)
 const dbName = 'imdb';
 
@@ -22,7 +23,8 @@ const getRatings = async (showID) => {
     }
 
     try {
-        const db = client.db(dbName)
+        // const db = client.db(dbName)
+        const db = client;
 
         // Get show title
         const show = await db.collection('show-master').findOne({showID});
