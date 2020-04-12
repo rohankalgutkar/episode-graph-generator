@@ -535,3 +535,7 @@ footer {
             transform: scale3D(0, 0, 1);
   } 
 }
+
+.apexcharts-menu-item.exportSVG, .apexcharts-menu-item.exportCSV {
+  display: none;
+}

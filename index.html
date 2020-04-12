@@ -31,11 +31,11 @@
       <div class="twelve columns home-main">
         <img src="images/television.png">
         <h3>Episode Graph Generator</h3>
-        <h6>Enter the Show ID (from IMDb) of the show below.</h6>
+        <h6>Enter the IMDb URL of the show below.</h6>
         <form>
           <div class="row">
             <div class="six columns">
-              <input class="u-full-width" type="text" placeholder="Eg. tt0386676" name="imdbID" id="imdbID">
+              <input class="u-full-width" type="text" placeholder="Eg. https://www.imdb.com/title/tt0386676/" name="imdbID" id="imdbID">
             </div>
             <div class="two columns">
               <input class="button-primary" type="submit" value="Generate!">
@@ -47,7 +47,7 @@
                 <div class="sk-cube sk-cube3"></div>
                 <div class="sk-cube sk-cube4"></div>
               </div>
-              <p id="err-note">Please enter a valid show ID!</p>
+              <p id="err-note">Please enter a valid IMDb URL!</p>
             </div>
           </div>
         </form>
@@ -55,7 +55,7 @@
 
       <div class="eight columns for-note">
         <p class="note">
-          • Show ID is the 9 character code found in the URL of it's IMDb page. <br>
+          <!-- • Show ID is the 9 character code found in the URL of it's IMDb page. <br> -->
           • Only TV shows are supported for now. <br>
           • Mini-series & documentaries are on the way. <br>
           • More features to be added soon!

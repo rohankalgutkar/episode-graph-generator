@@ -30,7 +30,7 @@ const getRatings = async (showID) => {
         if(!show) {
             return {
                 error: true,
-                msg: "Please enter a valid Show ID!"
+                msg: "Please enter a valid IMDb URL!"
             };
         }
 

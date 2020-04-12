@@ -24,12 +24,25 @@ const takeHome = homeBtn.addEventListener('click', (event) => {
     chart.destroy()
 })
 
+const getTitleCodeFromURL = (imdbCode) => {
+
+    if (imdbCode.length == 9){
+        return imdbCode
+    }
+    let imdbID = imdbCode.substr(imdbCode.search(/title\/tt/i)+6, 9);
+    return imdbID == -1 ? '' : imdbID
+    
+}
+
 const formEvent = form.addEventListener('submit', async event => {
     event.preventDefault();
     
-    const imdbID = document.querySelector('#imdbID').value;
-    console.log('imdbID: ' + imdbID)
-    if (imdbID != '') {
+    const imdbCode = document.querySelector('#imdbID').value;
+    console.log('imdbCode: ' + imdbCode)
+    if (imdbCode != '') {
+        console.log('in')
+        let imdbID = getTitleCodeFromURL(imdbCode);
+
         errNote.innerHTML = 'Loading...'
         errNoteDiv.classList.remove('hidden')
         loadingAnimation.classList.remove('hidden')
@@ -74,7 +87,7 @@ const formEvent = form.addEventListener('submit', async event => {
 
         // Create Chart
         chart = new ApexCharts(document.querySelector("#chart"), conf);
-        errNote.innerHTML = 'Please enter a valid show ID!';
+        errNote.innerHTML = 'Please enter a valid IMDb URL!';
         errNoteDiv.classList.add('hidden')
         loadingAnimation.classList.add('hidden')
         chart.render();
