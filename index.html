@@ -40,8 +40,14 @@
             <div class="two columns">
               <input class="button-primary" type="submit" value="Generate!">
             </div>
-            <div class="three columns error-note hidden" id="error-note">
-              <p>Please enter a valid show ID!</p>
+            <div class="four columns error-note hidden" id="error-note">
+              <div class="sk-cube-grid hidden" id="loadingAnimation">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+              </div>
+              <p id="err-note">Please enter a valid show ID!</p>
             </div>
           </div>
         </form>
@@ -51,7 +57,8 @@
         <p class="note">
           • Show ID is the 9 character code found in the URL of it's IMDb page. <br>
           • Only TV shows are supported for now. <br>
-          • Mini-series & documentaries to be added soon!
+          • Mini-series & documentaries are on the way. <br>
+          • More features to be added soon!
         </p>
       </div>
     </div>

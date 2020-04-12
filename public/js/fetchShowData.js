@@ -1,51 +1,39 @@
 const form = document.querySelector('form');
 const homeBtn = document.getElementById('takeHome');
-const errNote = document.getElementById('error-note')
+const errNoteDiv = document.getElementById('error-note')
+const errNote = document.getElementById('err-note')
+const loadingAnimation = document.getElementById('loadingAnimation')
 const home = document.getElementById("home");
 const chartContent = document.querySelector("#graph");
 
 var chart;
 
-const showComponent = (comp, timeout) => {
-    setTimeout(function () {
-        comp.style.display = "inline-block"
-    }, timeout);
-    comp.classList.remove('fadeOutUp');
+const showComponent = (comp) => {
+    comp.style.display = "inline-block"
     comp.classList.add('fadeInDown')
 }
 
-const hideComponent = (comp, timeout) => {
+const hideComponent = (comp) => {
     comp.classList.remove('fadeInDown')
-    comp.classList.add('fadeOutUp')
-    setTimeout(function () {
-        comp.style.display = "none"
-    }, timeout);
-    
+    comp.style.display = "none"
 }
 
 const takeHome = homeBtn.addEventListener('click', (event) => {
-    // setTimeout(function () {
-    //     home.style.display = "inline-block"
-    // }, 200);
-    // home.classList.remove('fadeOutUp');
-    // home.classList.add('fadeInDown')
-
-    // chartContent.classList.remove('fadeInDown')
-    // chartContent.classList.add('fadeOutUp')
-    // setTimeout(function () {
-    //     chartContent.style.display = "none"
-    // }, 300);
     showComponent(home, 200)
-    hideComponent(chartContent, 300)
+    hideComponent(chartContent)
     chart.destroy()
 })
 
 const formEvent = form.addEventListener('submit', async event => {
     event.preventDefault();
-
+    
     const imdbID = document.querySelector('#imdbID').value;
     console.log('imdbID: ' + imdbID)
     if (imdbID != '') {
+        errNote.innerHTML = 'Loading...'
+        errNoteDiv.classList.remove('hidden')
+        loadingAnimation.classList.remove('hidden')
+
         // Clear the form
         document.querySelector('#imdbID').value = '';
         //Get form data
@@ -57,23 +45,21 @@ const formEvent = form.addEventListener('submit', async event => {
 
         // Validate response
         if (showDataBody.error) {
-            errNote.value = showDataBody.msg
-            errNote.classList.remove('hidden')
+            errNote.innerHTML = showDataBody.msg
+            errNoteDiv.classList.remove('hidden')
+            loadingAnimation.classList.add('hidden')
+            setTimeout(() => {
+                errNoteDiv.classList.add('hidden')
+            }, 2500)
             return;
         }
 
         // Hide Home contents
-        // home.classList.remove('fadeInDown');
-        // home.classList.add('fadeOutUp');
-        // setTimeout(function () {
-        //     home.style.display = "none"
-        // }, 500);
-
         hideComponent(home, 300)
 
         // Show chart contents
-        chartContent.style.display = "inline";
-        chartContent.classList.remove('fadeOutUp')
+        chartContent.style.display = "inline-block";
+        // chartContent.classList.remove('fadeOutUp')
         chartContent.classList.add('fadeInDown')
 
         // showComponent(chartContent, 0)
@@ -88,12 +74,14 @@ const formEvent = form.addEventListener('submit', async event => {
 
         // Create Chart
         chart = new ApexCharts(document.querySelector("#chart"), conf);
+        errNote.innerHTML = 'Please enter a valid show ID!';
+        errNoteDiv.classList.add('hidden')
+        loadingAnimation.classList.add('hidden')
         chart.render();
     } else {
-        
-        errNote.classList.remove('hidden')
+        errNoteDiv.classList.remove('hidden')
         setTimeout(() => {
-            errNote.classList.add('hidden')
+            errNoteDiv.classList.add('hidden')
         }, 2500)
     }
 

@@ -35,7 +35,7 @@ app.post('/', async (req, res) => {
 
         _.each(episodeBuckets, (episodeBucket, indx) => {
             let sortedEpisodeBucket = _.sortBy(episodeBucket, 'seasonNum')
-            console.log(JSON.stringify(sortedEpisodeBucket))
+            // console.log(JSON.stringify(sortedEpisodeBucket))
             maxEpisodeCount = sortedEpisodeBucket.length;
 
             let epiDispName = (indx < 10 ? 'E0' + indx : 'E' + indx)
@@ -66,7 +66,7 @@ app.post('/', async (req, res) => {
 
         })
 
-        console.log(JSON.stringify(series))
+        // console.log(JSON.stringify(series))
 
         _.each(show.episodes, (epi) => {
             let season = epi.seasonNum;

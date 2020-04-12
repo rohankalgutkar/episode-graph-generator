@@ -24,9 +24,7 @@ const getRatings = async (showID) => {
         const db = client.db(dbName)
 
         // Get show title
-        const show = await db.collection('show-master').findOne({
-            showID
-        })
+        const show = await db.collection('show-master').findOne({showID});
 
         // Validation for show ID not found
         if(!show) {
@@ -37,7 +35,7 @@ const getRatings = async (showID) => {
         }
 
         const episodes = await db.collection('episode-master').find({
-            showID
+            showID: show.showID
         }).toArray();
 
         show.episodes = episodes;
