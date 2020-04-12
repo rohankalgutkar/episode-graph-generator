@@ -2,11 +2,12 @@ const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 
 
-const connectionURL = process.env.MongoDB_URI || 'mongodb://127.0.0.1:27017/imdb';
-console.log('connection URL '+connectionURL)
-const dbName = 'imdb';
+const connectionURL = process.env.MongoDB_URI || 'mongodb://127.0.0.1:27017/epi-grph-gen';
+// console.log('connection URL ' + connectionURL)
+const dbName = 'epi-grph-gen';
 
 const getRatings = async (showID) => {
+
     const client = await MongoClient.connect(connectionURL, {
             useUnifiedTopology: true
         })
@@ -23,14 +24,16 @@ const getRatings = async (showID) => {
     }
 
     try {
-        // const db = client.db(dbName)
-        const db = client;
+        const db = client.db(dbName)
+        // const db = client;
 
         // Get show title
-        const show = await db.collection('show-master').findOne({showID});
+        const show = await db.collection('show-master').findOne({
+            showID
+        });
 
         // Validation for show ID not found
-        if(!show) {
+        if (!show) {
             return {
                 error: true,
                 msg: "Please enter a valid IMDb URL!"

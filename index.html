@@ -35,7 +35,8 @@
         <form>
           <div class="row">
             <div class="six columns">
-              <input class="u-full-width" type="text" placeholder="Eg. https://www.imdb.com/title/tt0386676/" name="imdbID" id="imdbID">
+              <input class="u-full-width" type="text" placeholder="Eg. https://www.imdb.com/title/tt0386676/"
+                name="imdbID" id="imdbID">
             </div>
             <div class="two columns">
               <input class="button-primary" type="submit" value="Generate!">
@@ -71,8 +72,10 @@
       <div class="three columns" style="margin-top: 5%; margin-bottom: 3%;">
         <button id="takeHome">Plot Another Show</button>
       </div>
-      <div class="twelve columns" style="text-align: center;">
-        <div id="chart" style="display: inline-block;"></div>
+      <div class="row">
+        <div class="twelve columns" style="text-align: center;">
+          <div id="chart" style="display: inline-block;"></div>
+        </div>
       </div>
     </div>
 
@@ -94,9 +97,10 @@
       <div class="six columns">
         <p class="no-marg">
           This site is not affiliated with IMDb<br>
-          Charting library: <a href="https://apexcharts.com/">apexcharts.com</a> <br>
+          Charting library: <a href="https://apexcharts.com/" target="_blank">apexcharts.com</a> <br>
           <!-- &copy;2020 @daft_ro<br> -->
-          <span style="color: #D2691E;"> Designed and developed by <a target="_blank" href="https://rohankalgutkar.in">Rohan Kalgutkar</a></span></p>
+          <span style="color: #D2691E;"> Designed and developed by <a target="_blank"
+              href="https://rohankalgutkar.in">Rohan Kalgutkar</a></span></p>
 
 
       </div>
@@ -108,4 +112,5 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="js/fetchShowData.js"></script>
 </body>
+
 </html>

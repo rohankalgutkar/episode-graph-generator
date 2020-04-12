@@ -16,13 +16,15 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', async (req, res) => {
-    let imdbID = req.body.imdbID
-    console.log(imdbID)
+    try {
+        let imdbID = req.body.imdbID
+        console.log(imdbID)
 
         const show = await mongodb.getRatings(imdbID)
-        
-        if(show.error) {
+
+        if (show.error) {
             res.json(show)
+            return 
         }
 
         let title = show.title;
@@ -88,8 +90,10 @@ app.post('/', async (req, res) => {
         let height = 750;
         let width = 500;
         let maxCategories = categories.length;
-        if(maxCategories < 4){
-            width = 120
+        if (maxCategories > 0 && maxCategories <=2) {
+            width = 150
+        } else if (maxCategories >= 3 && maxCategories <= 4) {
+            width = 400
         } else if (maxCategories >= 15 && maxCategories <= 20) {
             width = 600
         } else if (maxCategories > 20 && maxCategories <= 30) {
@@ -110,8 +114,10 @@ app.post('/', async (req, res) => {
             height
         }
 
-        res.send(JSON.stringify(payload))
-
+        res.json(payload)
+    } catch (e) {
+        console.log(e)
+    }
 })
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

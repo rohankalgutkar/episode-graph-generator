@@ -9,7 +9,7 @@ const chartContent = document.querySelector("#graph");
 var chart;
 
 const showComponent = (comp) => {
-    comp.style.display = "inline-block"
+    comp.style.display = "block"
     comp.classList.add('fadeInDown')
 }
 
@@ -38,9 +38,8 @@ const formEvent = form.addEventListener('submit', async event => {
     event.preventDefault();
     
     const imdbCode = document.querySelector('#imdbID').value;
-    console.log('imdbCode: ' + imdbCode)
+    // console.log('imdbCode: ' + imdbCode)
     if (imdbCode != '') {
-        console.log('in')
         let imdbID = getTitleCodeFromURL(imdbCode);
 
         errNote.innerHTML = 'Loading...'
@@ -71,7 +70,7 @@ const formEvent = form.addEventListener('submit', async event => {
         hideComponent(home, 300)
 
         // Show chart contents
-        chartContent.style.display = "inline-block";
+        chartContent.style.display = "block";
         // chartContent.classList.remove('fadeOutUp')
         chartContent.classList.add('fadeInDown')
 
