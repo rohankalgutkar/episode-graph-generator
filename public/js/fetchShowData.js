@@ -121,30 +121,30 @@ const chartConfig = {
                         from: 0.1,
                         to: 6,
                         name: 'Garbage',
-                        color: '#EA9999'
+                        color: '#E93733'
                     }, {
                         from: 6.1,
                         to: 6.9,
                         name: 'Bad',
-                        color: '#FCDF99'
+                        color: '#F7C033'
                     },
                     {
                         from: 7,
                         to: 7.9,
                         name: 'Average',
-                        color: '#ECDF93'
+                        color: '#FDF731'
                     },
                     {
                         from: 8,
                         to: 8.9,
                         name: 'Good',
-                        color: '#B5D37F'
+                        color: '#92D050'
                     },
                     {
                         from: 9,
                         to: 10,
                         name: 'Great',
-                        color: '#60BD60'
+                        color: '#5AB152'
                     }
                 ]
             }
