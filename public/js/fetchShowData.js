@@ -128,11 +128,11 @@ const chartConfig = {
             colorScale: {
                 ranges: [{
                         from: 0.1,
-                        to: 6,
+                        to: 4,
                         name: 'Garbage',
-                        color: '#E93733'
+                        color: '#EA9999'
                     }, {
-                        from: 6.1,
+                        from: 4.1,
                         to: 6.9,
                         name: 'Bad',
                         color: '#F7C033'
