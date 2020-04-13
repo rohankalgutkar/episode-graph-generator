@@ -25,11 +25,19 @@ const takeHome = homeBtn.addEventListener('click', (event) => {
 })
 
 const getTitleCodeFromURL = (imdbCode) => {
-
-    if (imdbCode.length == 9){
+    let codeLength = imdbCode.length;
+    if (codeLength >= 9 && codeLength < 11){
         return imdbCode
     }
     let imdbID = imdbCode.substr(imdbCode.search(/title\/tt/i)+6, 9);
+    
+    // Workaround for 10 digit tcodes:
+    let charAfter9 = imdbCode.substr(imdbCode.search(imdbID)+9, 1)
+
+    if(charAfter9 != '' && charAfter9 !='/' ){
+        imdbID = imdbID+charAfter9
+    }
+
     return imdbID == -1 ? '' : imdbID
     
 }
