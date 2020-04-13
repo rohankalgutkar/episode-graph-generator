@@ -17,6 +17,7 @@
     "got": "^10.7.0",
     "lodash": "^4.17.15",
     "mongodb": "^3.5.5",
-    "query-string": "^6.12.0"
+    "query-string": "^6.12.0",
+    "woke-dyno": "0.0.4"
   }
 }
