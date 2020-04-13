@@ -44,6 +44,13 @@ const getRatings = async (showID) => {
             showID: show.showID
         }).toArray();
 
+        if(episodes.length == 0) {
+            return {
+                error: true,
+                msg: "Episodes not found for " + show.title + "!"
+            }
+        }
+
         show.episodes = episodes;
         return show
     } catch (e) {
