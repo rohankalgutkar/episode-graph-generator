@@ -14,7 +14,8 @@ const createChartConfig = (show) => {
     // Compute chart height and width
     let {
         height,
-        width
+        width,
+        boolHideLegend
     } = computeChartDimentions(categories.length, maxEpisodeCount)
 
     return payload = {
@@ -22,20 +23,19 @@ const createChartConfig = (show) => {
         categories,
         series,
         width,
-        height
+        height,
+        boolHideLegend
     }
 }
 
 const computeChartSeries = (episodes) => {
     let series = [];
-    let maxEpisodeCount;
 
     // Group by Episode Num then sort by Season Num
     let episodeBuckets = _.groupBy(episodes, 'episodeNum');
 
     _.each(episodeBuckets, (episodeBucket, indx) => {
         let sortedEpisodeBucket = _.sortBy(episodeBucket, 'seasonNum')
-        maxEpisodeCount = sortedEpisodeBucket.length;
 
         let epiDispName = (indx < 10 ? 'E0' + indx : 'E' + indx)
         let seriesObj = {
@@ -65,7 +65,7 @@ const computeChartSeries = (episodes) => {
 
     return {
         series,
-        maxEpisodeCount
+        maxEpisodeCount: series.length
     }
 }
 
@@ -90,27 +90,23 @@ const computeCategoriesArr = (episodes) => {
 }
 
 const computeChartDimentions = (maxCategories, maxEpisodeCount) => {
-    let height = 750;
-    let width = 500;
-    if (maxCategories > 0 && maxCategories <= 2) {
-        width = 150
-    } else if (maxCategories >= 3 && maxCategories <= 4) {
-        width = 400
-    } else if (maxCategories >= 15 && maxCategories <= 20) {
-        width = 600
-    } else if (maxCategories > 20 && maxCategories <= 30) {
-        width = 700;
-    } else if (maxCategories > 30) {
-        width = 900;
-    }
+    let height = 150;
+    let width = 100;
+    let boolHideLegend = false;
 
-    if (maxEpisodeCount >= 30) {
-        height = 850
+    if (maxCategories <= 4) {
+        boolHideLegend = true
     }
+    width = (width + (maxCategories * 50))
+    height = (height + (maxEpisodeCount * 50))
+
+    width = (width > 900) ? 900 : width
+    height = (height > 800) ? 800 : height
 
     return {
         height,
-        width
+        width,
+        boolHideLegend
     }
 }
 

@@ -83,6 +83,7 @@ const formEvent = form.addEventListener('submit', async event => {
         conf.xaxis.categories = showDataBody.categories;
         conf.chart.height = showDataBody.height;
         conf.chart.width = showDataBody.width;
+        conf.legend.show = !showDataBody.boolHideLegend;
 
         // Create Chart
         chart = new ApexCharts(document.querySelector("#chart"), conf);
