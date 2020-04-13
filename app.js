@@ -40,6 +40,6 @@ app.post('/', async (req, res) => {
 })
 
 app.listen(port, () => {
-    // wakeDyno('https://episode-graph-generator.herokuapp.com/').start()
+    wakeDyno('https://episode-graph-generator.herokuapp.com/').start()
     console.log(`EGG is running on port ${port}`)
 })
