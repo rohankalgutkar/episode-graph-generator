@@ -31,10 +31,17 @@ const createChartConfig = (show) => {
 const computeChartSeries = (episodes) => {
     let series = [];
 
+    //clean-up episodes without epiNum or seasNum
+    let cleanedUpData = episodes.filter((ep) => {
+        if(typeof ep.episodeNum == 'number' && typeof ep.seasonNum == 'number')
+            return ep
+    })
+
     // Group by Episode Num then sort by Season Num
-    let episodeBuckets = _.groupBy(episodes, 'episodeNum');
+    let episodeBuckets = _.groupBy(cleanedUpData, 'episodeNum');
 
     _.each(episodeBuckets, (episodeBucket, indx) => {
+
         let sortedEpisodeBucket = _.sortBy(episodeBucket, 'seasonNum')
 
         let epiDispName = (indx < 10 ? 'E0' + indx : 'E' + indx)
@@ -70,15 +77,21 @@ const computeChartSeries = (episodes) => {
 }
 
 const computeCategoriesArr = (episodes) => {
+
     let seasons = [];
 
     _.each(episodes, (epi) => {
         let season = epi.seasonNum;
-        seasons.push(season)
+
+        if (epi.seasonNum != '\\N' && epi.episodeNum != '\\N')
+            seasons.push(season)
+
     })
+
 
     // Compute Season Labels for X axis
     let numSeason = Math.max(...seasons)
+
     let categories = [];
     while (numSeason > 0) {
         let prefix = (numSeason < 10 ? 'S0' : 'S')
